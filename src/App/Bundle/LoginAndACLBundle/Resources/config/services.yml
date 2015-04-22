@@ -1,0 +1,4 @@
+services:
+#    acl.example:
+#        class: App\Bundle\LoginAndACLBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
