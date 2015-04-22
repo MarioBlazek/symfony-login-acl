@@ -1,0 +1,9 @@
+security:
+    encoders:
+        ACLBundle\Entity\User:
+            algorithm: bcrypt
+
+    providers:
+        user_from_db:
+            entity:
+                class: ACLBundle:User
