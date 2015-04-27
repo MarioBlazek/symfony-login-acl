@@ -9,7 +9,7 @@ use Serializable;
 
 /**
  * @ORM\Table(name="users")
- * @ORM\Entity(repositoryClass="ACLBundle\Entity\UserRepository")
+ * @ORM\Entity(repositoryClass="App\Bundle\LoginAndACLBundle\Entity\UserRepository")
  */
 class User implements AdvancedUserInterface, Serializable
 {
