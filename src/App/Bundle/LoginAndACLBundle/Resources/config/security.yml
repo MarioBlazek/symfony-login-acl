@@ -1,9 +1,21 @@
 security:
     encoders:
-        ACLBundle\Entity\User:
-            algorithm: bcrypt
-
+            ACLBundle\Entity\User:
+                algorithm: bcrypt
     providers:
+        in_memory:
+            memory: ~
         user_from_db:
             entity:
                 class: ACLBundle:User
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt|error)|css|images|js)/
+            security: false
+
+        default:
+            anonymous: ~
+            form_login:
+                login_path: /login
+                check_path: /login_check

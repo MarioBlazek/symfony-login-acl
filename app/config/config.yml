@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@ACLBundle/Resources/config/security.yml" }
 
 framework:
     #esi:             ~
