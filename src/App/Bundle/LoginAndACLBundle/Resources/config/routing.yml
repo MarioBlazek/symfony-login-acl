@@ -1,3 +1,13 @@
 acl_homepage:
     path:     /hello/{name}
     defaults: { _controller: ACLBundle:Default:index }
+
+acl_login_show:
+    path: /login
+    defaults: { _controller: ACLBundle:Login:showLoginForm }
+    methods: [GET]
+
+acl_login_check:
+    path: /login_check
+    defaults: { _controller: ACLBundle:Login:loginCheck }
+    methods: [POST]
