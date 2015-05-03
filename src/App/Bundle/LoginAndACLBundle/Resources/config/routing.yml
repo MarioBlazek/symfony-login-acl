@@ -7,3 +7,26 @@ acl_login_check:
     path: /login_check
     defaults: { _controller: ACLBundle:Login:loginCheck }
     methods: [POST]
+
+acl_logout:
+    path: /logout
+
+acl_login_homepage:
+    path: /admin
+    defaults: { _controller: ACLBundle:Login:showHomepageAfterLogin }
+    methods: [GET]
+
+acl_user_show_form:
+    path: /admin/new/user
+    defaults: { _controller: ACLBundle:User:show }
+    methods: [GET]
+
+acl_user_handle_form:
+    path: /admin/new/user
+    defaults: { _controller: ACLBundle:User:handle }
+    methods: [POST]
+
+acl_user_roles:
+    path: /roles
+    defaults: { _controller: ACLBundle:User:showRoles }
+    methods: [GET]
