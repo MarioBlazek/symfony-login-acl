@@ -6,18 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{% block title %}{% endblock %}</title>
-    {% block stylesheet_include %}
-        <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
+
+    {% block stylesheets %}
+        {% stylesheets 'bundles/acl/bootstrap/css/*' filter='cssrewrite' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+    {% endblock %}
+
+    {% block javascripts %}
+        {% javascripts
+            '@ACLBundle/Resources/public/js/jquery.min.js'
+            '@ACLBundle/Resources/public/bootstrap/js/bootstrap.min.js' %}
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
     {% endblock %}
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
 <body>
     {% block content %}{% endblock %}
-
-    {% block javascripts %}
-        <script type="text/javascript" src="{{ asset('jquery/jquery.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
-    {% endblock %}
 </body>
 </html>
