@@ -6,10 +6,10 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\User\UserProviderInterface;
+use App\Bundle\LoginAndACLBundle\Model\ACLUserProviderInterface;
 use Symfony\Component\Serializer\Exception\UnsupportedException;
 
-class UserRepository extends EntityRepository implements UserProviderInterface
+class UserRepository extends EntityRepository implements ACLUserProviderInterface
 {
 
 	/**
@@ -77,5 +77,10 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 	public function supportsClass($class)
 	{
 		return $this->getEntityName() === $class || is_subclass_of($class, $this->getEntityName());
+	}
+
+	public function createNew()
+	{
+		return new User();
 	}
 }
