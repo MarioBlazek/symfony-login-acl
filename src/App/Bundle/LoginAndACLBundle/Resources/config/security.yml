@@ -1,13 +1,12 @@
 security:
     encoders:
-            ACLBundle\Entity\User:
-                algorithm: bcrypt
+        App\Bundle\LoginAndACLBundle\Entity\User: bcrypt
     providers:
         in_memory:
             memory: ~
         user_from_db:
             entity:
-                class: ACLBundle:User
+                class: App\Bundle\LoginAndACLBundle\Entity\User
 
     firewalls:
         dev:
@@ -17,5 +16,10 @@ security:
         default:
             anonymous: ~
             form_login:
+                provider: user_from_db
                 login_path: /login
                 check_path: /login_check
+                default_target_path: acl_login_homepage # login after successfull login
+            logout:
+                path: /logout
+                target: /
