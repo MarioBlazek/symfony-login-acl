@@ -1,4 +1,32 @@
+parameters:
+    acl.user.handler.class: App\Bundle\LoginAndACLBundle\Utilities\UserHandler
+    acl.user.manager.class: App\Bundle\LoginAndACLBundle\Model\ACLUserManager
+    acl.group.manager.class: App\Bundle\LoginAndACLBundle\Model\ACLGroupManager
+    acl.group.handler.class: App\Bundle\LoginAndACLBundle\Utilities\GroupHandler
+    acl.role.handler.class: App\Bundle\LoginAndACLBundle\Utilities\RoleHandler
+    acl.role.manager.class: App\Bundle\LoginAndACLBundle\Model\ACLRoleManager
 services:
-#    acl.example:
-#        class: App\Bundle\LoginAndACLBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+
+    acl.user.manager:
+        class: %acl.user.manager.class%
+        arguments: [ @security.encoder_factory, @doctrine.orm.entity_manager ]
+
+    acl.user.handler:
+        class: %acl.user.handler.class%
+        arguments: [ @acl.user.manager, @acl.group.manager, @acl.role.manager ]
+
+    acl.group.manager:
+        class: %acl.group.manager.class%
+        arguments: [ @doctrine.orm.entity_manager ]
+
+    acl.group.handler:
+        class: %acl.group.handler.class%
+        arguments: [ @acl.group.manager, @acl.role.manager ]
+
+    acl.role.manager:
+        class: %acl.role.manager.class%
+        arguments: [ @doctrine.orm.entity_manager ]
+
+    acl.role.handler:
+        class: %acl.role.handler.class%
+        arguments: [ @acl.role.manager, @acl.group.manager ]
