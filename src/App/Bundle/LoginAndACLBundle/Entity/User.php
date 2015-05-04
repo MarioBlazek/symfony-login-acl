@@ -212,13 +212,8 @@ class User implements ACLUserInterface
 	public function getRoles()
 	{
 		$roles = array();
-
 		foreach ($this->groups as $group) {
-			$groupRoles = $group->getRoles();
-
-			foreach ($groupRoles as $groupRole) {
-				$roles[] = $groupRole->getName();
-			}
+			$roles = array_merge($this->getGroupRoles($group), $roles);
 		}
 
 		foreach ($this->roles as $roleName) {
@@ -519,4 +514,26 @@ class User implements ACLUserInterface
     {
         $this->roles->removeElement($role);
     }
+
+	/**
+	 * Get group roles recursively
+	 *
+	 * @param $group
+	 * @return array
+	 */
+	protected function getGroupRoles($group)
+	{
+		$roles = array();
+		$rolesArray = $group->getRoles();
+
+		foreach ($rolesArray as $role) {
+			$roles[] = $role->getName();
+		}
+
+		if ($group->hasParent()) {
+			$roles = array_merge($this->getGroupRoles($group->getParent()), $roles);
+		}
+
+		return $roles;
+	}
 }

@@ -32,7 +32,7 @@ class Group implements ACLGroupInterface
 	private $children;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Group", inversedBy="children")
+	 * @ORM\ManyToOne(targetEntity="Group", inversedBy="children", fetch="EAGER")
 	 * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
 	 */
 	private $parent;
@@ -233,4 +233,12 @@ class Group implements ACLGroupInterface
     {
         return $this->updatedAt;
     }
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function hasParent()
+	{
+		return $this->parent ? true : false;
+	}
 }
