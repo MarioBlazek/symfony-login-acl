@@ -61,7 +61,7 @@ class ACLRole implements ACLRoleInterface
      * Set name
      *
      * @param string $name
-     * @return ACLRole
+     * @return ACLRoleInterface
      */
     public function setName($name)
     {
@@ -84,7 +84,7 @@ class ACLRole implements ACLRoleInterface
      * Set hash
      *
      * @param string $hash
-     * @return ACLRole
+     * @return ACLRoleInterface
      */
     public function setHash($hash)
     {
@@ -107,7 +107,7 @@ class ACLRole implements ACLRoleInterface
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return ACLRole
+     * @return ACLRoleInterface
      */
     public function setCreatedAt($createdAt)
     {
@@ -130,7 +130,7 @@ class ACLRole implements ACLRoleInterface
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return ACLRole
+     * @return ACLRoleInterface
      */
     public function setUpdatedAt($updatedAt)
     {
