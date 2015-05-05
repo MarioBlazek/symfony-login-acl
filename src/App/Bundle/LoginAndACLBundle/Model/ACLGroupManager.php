@@ -19,11 +19,21 @@ class ACLGroupManager implements ACLGroupManagerInterface
 		$this->manager = $manager;
 	}
 
+	/**
+	 * Create new instance of ACLGroupInterface
+	 *
+	 * @return ACLGroupInterface
+	 */
 	public function create()
 	{
 		return new Group();
 	}
 
+	/**
+	 * Update given group
+	 *
+	 * @param ACLGroupInterface $group
+	 */
 	public function update(ACLGroupInterface $group)
 	{
 		$group->setUpdatedAt(new DateTime());
@@ -32,6 +42,13 @@ class ACLGroupManager implements ACLGroupManagerInterface
 		$this->manager->flush();
 	}
 
+	/**
+	 * Find group by name
+	 *
+	 * @param string $name
+	 * @return ACLGroupInterface
+	 * @throws \Exception
+	 */
 	public function getGroup($name)
 	{
 		$group = $this->manager->getRepository('ACLBundle:Group')->findOneBy(array(
@@ -39,7 +56,7 @@ class ACLGroupManager implements ACLGroupManagerInterface
 		));
 
 		if (null === $group) {
-			throw new \Exception('Can not find group by name.');
+			throw new \Exception(sprintf('Can not find group by name.', $name));
 		}
 
 		return $group;
