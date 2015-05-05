@@ -18,7 +18,7 @@ class RoleCommand extends ContainerAwareCommand
 		$this->setName('acl:role:create');
 		$this->setDescription('Create new role.');
 		$this->setDefinition(array(
-			new InputArgument('roleName', InputArgument::REQUIRED, 'Role name.'),
+			new InputArgument('roleName', InputArgument::REQUIRED, 'Role name without ROLE_.'),
 			new InputOption('group', 'g', InputOption::VALUE_REQUIRED, 'Group name.'),
 		));
 	}

@@ -38,7 +38,7 @@ class RoleHandler
 	public function create($name, $group = null)
 	{
 		$role = $this->manager->getRoleOrCreateIfNotExists($name);
-		$role->setName($name);
+		$role->setName("ROLE_".$name);
 
 		$this->manager->update($role);
 
