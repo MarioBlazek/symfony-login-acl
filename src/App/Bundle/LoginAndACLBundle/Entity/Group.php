@@ -3,7 +3,7 @@
 namespace App\Bundle\LoginAndACLBundle\Entity;
 
 use App\Bundle\LoginAndACLBundle\Model\ACLGroupInterface;
-use App\Bundle\LoginAndACLBundle\Entity\ACLRole;
+use App\Bundle\LoginAndACLBundle\Model\ACLRoleInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
@@ -102,10 +102,10 @@ class Group implements ACLGroupInterface
     /**
      * Add children
      *
-     * @param Group $children
-     * @return Group
+     * @param ACLGroupInterface $children
+     * @return ACLGroupInterface
      */
-    public function addChild(Group $children)
+    public function addChild(ACLGroupInterface $children)
     {
         $this->children[] = $children;
 
@@ -115,9 +115,9 @@ class Group implements ACLGroupInterface
     /**
      * Remove children
      *
-     * @param Group $children
+     * @param ACLGroupInterface $children
      */
-    public function removeChild(Group $children)
+    public function removeChild(ACLGroupInterface $children)
     {
         $this->children->removeElement($children);
     }
@@ -135,10 +135,10 @@ class Group implements ACLGroupInterface
     /**
      * Set parent
      *
-     * @param Group $parent
-     * @return Group
+     * @param ACLGroupInterface $parent
+     * @return ACLGroupInterface
      */
-    public function setParent(Group $parent = null)
+    public function setParent(ACLGroupInterface $parent = null)
     {
         $this->parent = $parent;
 
@@ -158,10 +158,10 @@ class Group implements ACLGroupInterface
     /**
      * Add roles
      *
-     * @param ACLRole $role
-     * @return Group
+     * @param ACLRoleInterface $role
+     * @return ACLGroupInterface
      */
-    public function addRole(ACLRole $role)
+    public function addRole(ACLRoleInterface $role)
     {
         $this->roles[] = $role;
 
@@ -171,9 +171,9 @@ class Group implements ACLGroupInterface
     /**
      * Remove roles
      *
-     * @param ACLRole $role
+     * @param ACLRoleInterface $role
      */
-    public function removeRole(ACLRole $role)
+    public function removeRole(ACLRoleInterface $role)
     {
         $this->roles->removeElement($role);
     }
