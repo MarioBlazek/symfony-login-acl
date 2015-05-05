@@ -34,9 +34,9 @@ class ACLRoleManager implements ACLRoleManagerInterface
 	}
 
 	/**
-	 * Create new ACLRole
+	 * Create new ACLRoleInterface
 	 *
-	 * @return ACLRole
+	 * @return ACLRoleInterface
 	 */
 	public function create()
 	{
@@ -68,7 +68,7 @@ class ACLRoleManager implements ACLRoleManagerInterface
 	 * Get role or create new
 	 *
 	 * @param string $name
-	 * @return ACLRole
+	 * @return ACLRoleInterface
 	 */
 	public function getRoleOrCreateIfNotExists($name)
 	{
