@@ -27,13 +27,18 @@ class ACLUserManager implements ACLUserManagerInterface
 	/**
 	 * Creates new user
 	 *
-	 * @return User
+	 * @return ACLUserInterface
 	 */
 	public function create()
 	{
 		return new User();
 	}
 
+	/**
+	 * Updates given user
+	 *
+	 * @param ACLUserInterface $user
+	 */
 	public function update(ACLUserInterface $user)
 	{
 		$this->updatePassword($user);
@@ -43,6 +48,12 @@ class ACLUserManager implements ACLUserManagerInterface
 		$this->manager->flush();
 	}
 
+	/**
+	 * Find user by username of email
+	 *
+	 * @param string $usernameOrEmail
+	 * @return ACLUserInterface
+	 */
 	public function getUser($usernameOrEmail)
 	{
 		$user = $this->getUserRepository()->loadUserByUsername($usernameOrEmail);
@@ -50,6 +61,11 @@ class ACLUserManager implements ACLUserManagerInterface
 		return $user;
 	}
 
+	/**
+	 * Update user password
+	 *
+	 * @param ACLUserInterface $user
+	 */
 	private function updatePassword(ACLUserInterface $user)
 	{
 		if (0 !== strlen($password = $user->getPlainPassword())) {
