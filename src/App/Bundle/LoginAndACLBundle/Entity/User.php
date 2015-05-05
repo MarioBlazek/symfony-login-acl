@@ -220,7 +220,7 @@ class User implements ACLUserInterface
 			$roles[] = $roleName->getName();
 		}
 
-		return $roles;
+		return array_unique($roles);
 	}
 
 	/**
